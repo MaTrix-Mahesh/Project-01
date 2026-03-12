@@ -3,10 +3,13 @@ let mongoose = require("mongoose");
 let dotenv = require("dotenv");
 let connect_database = require("./config/db");
 const connectdb = require("./config/db");
+const authRoutes = require("./routes/auth.routes")
 const app = express();
 dotenv.config();
 connectdb()
 
+
+app.use("/auth",authRoutes)
 
 app.get("/",function(req,res) {
     res.send("welcome");
