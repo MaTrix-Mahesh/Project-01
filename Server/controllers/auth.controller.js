@@ -29,11 +29,13 @@ module.exports.register = async function(req,res){
             password : hashpassword
         });
 
-      const token = await  jwt.sign({id : user.__id},process.env.JWT_SECRET ,{
+        const token = await  jwt.sign({id : user.__id},process.env.JWT_SECRET ,{
             explireIN :'2d',
         });
 
-        
+        // cookies create 
+
+
     }catch(err){
         console.log(err);
     }
