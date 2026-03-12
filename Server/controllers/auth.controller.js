@@ -34,9 +34,20 @@ module.exports.register = async function(req,res){
         });
 
         // cookies create 
+        res.cookie("token",token,{
+            httponly : true,
+            secure :process.env.NODE_ENV === 'PRODUCTION',
+            maxAge : 30*24*60*60*1000
+        })
 
+        res.status(200).json({
+            message: 'user register successfully '
+        })
 
     }catch(err){
-        console.log(err);
+        res.status (500).json({
+            message : "something went wrong ",
+            err
+        })
     }
 }
