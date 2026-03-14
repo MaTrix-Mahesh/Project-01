@@ -53,3 +53,7 @@ module.exports.register = async function (req, res) {
     });
   }
 };
+
+module.exports.login = await function (req,res){
+  
+}
