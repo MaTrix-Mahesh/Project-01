@@ -54,6 +54,24 @@ module.exports.register = async function (req, res) {
   }
 };
 
-module.exports.login = await function (req,res){
-  
+module.exports.login = async function (req,res){
+  const {email, password} = req.body;  
+
+  try{
+    if(!email || !password){
+      return res.status (400).json({
+        message:"invalid email and gamil"
+      })
+    };
+
+    let user = await User.findOne({ email });
+    if(!user){
+      return res.status(400).json({
+        message:"invalid email tryy agian "
+      })
+    }
+  }
+  catch(err){
+
+  }
 }
