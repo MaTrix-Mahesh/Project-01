@@ -1,7 +1,8 @@
 import { useState } from "react";
 import API from "../api/axios";
+import "./auth.css";
 
-function Register() {
+function Register(){
 
 const [name,setName] = useState("")
 const [email,setEmail] = useState("")
@@ -20,12 +21,16 @@ password
 alert(res.data.message)
 
 }catch(err){
-alert(err.response.data.message)
+alert(err.response?.data?.message)
 }
+
 }
 
 return(
-<div>
+
+<div className="container">
+
+<div className="card">
 
 <h2>Register</h2>
 
@@ -33,21 +38,21 @@ return(
 
 <input
 type="text"
-placeholder="name"
+placeholder="Name"
 value={name}
 onChange={(e)=>setName(e.target.value)}
 />
 
 <input
 type="email"
-placeholder="email"
+placeholder="Email"
 value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
 <input
 type="password"
-placeholder="password"
+placeholder="Password"
 value={password}
 onChange={(e)=>setPassword(e.target.value)}
 />
@@ -57,7 +62,11 @@ onChange={(e)=>setPassword(e.target.value)}
 </form>
 
 </div>
+
+</div>
+
 )
+
 }
 
 export default Register

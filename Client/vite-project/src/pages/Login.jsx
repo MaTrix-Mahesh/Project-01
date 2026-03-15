@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/axios";
+import "./auth.css";
 
 function Login(){
 
@@ -19,14 +20,16 @@ password
 alert(res.data.message)
 
 }catch(err){
-alert(err.response.data.message)
+alert(err.response?.data?.message)
 }
 
 }
 
 return(
 
-<div>
+<div className="container">
+
+<div className="card">
 
 <h2>Login</h2>
 
@@ -34,14 +37,14 @@ return(
 
 <input
 type="email"
-placeholder="email"
+placeholder="Email"
 value={email}
 onChange={(e)=>setEmail(e.target.value)}
 />
 
 <input
 type="password"
-placeholder="password"
+placeholder="Password"
 value={password}
 onChange={(e)=>setPassword(e.target.value)}
 />
@@ -52,7 +55,10 @@ onChange={(e)=>setPassword(e.target.value)}
 
 </div>
 
+</div>
+
 )
+
 }
 
 export default Login
