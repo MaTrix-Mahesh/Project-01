@@ -104,3 +104,20 @@ module.exports.login = async function (req,res){
     });
   }
 }
+
+module.exports.logout = function(req, res) {
+     res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(0),
+    });
+
+    res.status(200).json({
+      message: "Logged out successfully",
+    });
+};
+
+module.exports.profile = function (req,res){
+  res.status(200).json({
+    User :req.user
+  })
+} 

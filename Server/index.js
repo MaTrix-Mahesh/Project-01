@@ -4,10 +4,13 @@ let dotenv = require("dotenv");
 let connect_database = require("./config/db");
 const connectdb = require("./config/db");
 const authRoutes = require("./routes/auth.routes")
+const cookieParser = require("cookie-parser") 
 const app = express();
 dotenv.config();
 connectdb()
 
+
+app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
