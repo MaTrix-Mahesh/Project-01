@@ -60,7 +60,7 @@ module.exports.login = async function (req,res){
   try{
     if(!email || !password){
       return res.status (400).json({
-        message:"invalid email and gamil"
+        message:"invalid email and gamil" 
       })
     };
 
@@ -69,11 +69,38 @@ module.exports.login = async function (req,res){
       return res.status(400).json({
         message:"invalid email tryy agian "
       })
-    }
+    } 
 
+    let ismatch = await  bcrypt.compare(password,user.password)
     
+    if (!ismatch) {
+      return res.status(400).json({
+        message:"invalid password"
+      })
+    }
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "2d",
+      }
+    );
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "PRODUCTION",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json({
+      message: "Login successfully",
+      user 
+    })
   }   
   catch(err){
-
+     res.status(500).json({
+      message: "something went wrong",
+      err,
+    });
   }
 }
